@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getViewer } from "@/lib/auth";
-import { megaGroups } from "@/lib/gaming";
 import { HeaderActions } from "./header-actions";
 
 export async function SiteHeader() {
@@ -11,39 +10,46 @@ export async function SiteHeader() {
 
   return (
     <>
-      <div className="announcement">
+      <div className="announcement premium-announcement">
         <div className="announcement-inner">
-          <span>Gaming store in Sialkot</span><span className="announcement-dot">•</span><span>Delivery across Pakistan</span><span className="announcement-dot">•</span><span>New & checked used gaming gear</span>
-          <div className="utility-links"><Link href="/track">Track order</Link><Link href="/returns">Returns & warranty</Link></div>
+          <span>🇵🇰 Pakistan&apos;s trusted gaming store</span>
+          <span className="announcement-dot">•</span>
+          <span>Fast delivery across Pakistan</span>
+          <span className="announcement-dot">•</span>
+          <span>Original products & clear warranty</span>
+          <span className="announcement-dot">•</span>
+          <span>Secure ordering</span>
+          <div className="utility-links">
+            <Link href="/track">Track order</Link>
+            <Link href="/returns">Help & warranty</Link>
+          </div>
         </div>
       </div>
-      <header className="site-header">
+
+      <header className="site-header premium-header">
         <Link href="/" className="brand-lockup" aria-label="Unique CD House home">
-          <Image src="/unique-logo.png" width={220} height={70} alt="Unique CD House" priority />
+          <Image src="/unique-logo.png" width={230} height={78} alt="Unique CD House" priority />
         </Link>
-        <form className="header-search" action="/shop" method="get">
-          <input name="q" placeholder="Search PS5, Xbox, Nintendo, games, controllers…" aria-label="Search products" />
-          <button type="submit">Search</button>
+
+        <form className="header-search premium-search" action="/shop" method="get">
+          <span className="search-icon">⌕</span>
+          <input name="q" placeholder="Search games, consoles, controllers, accessories…" aria-label="Search products" />
+          <button type="submit" aria-label="Search">⌕</button>
         </form>
+
         <HeaderActions loggedIn={Boolean(viewer)} isAdmin={isAdmin} displayName={displayName} />
       </header>
-      <nav className="category-nav" aria-label="Shop categories">
-        <div className="category-nav-inner">
-          <details className="mega-menu">
-            <summary>Browse Categories <span>⌄</span></summary>
-            <div className="mega-panel">
-              {megaGroups.map((group) => <div className="mega-group" key={group.title}><strong>{group.title}</strong>{group.links.map(([label, href]) => <Link href={href} key={label}>{label}</Link>)}</div>)}
-              <div className="mega-promo"><span>UNIQUE CD HOUSE</span><strong>Built for gamers.</strong><p>Console gaming, PC gear and accessories with local support in Sialkot.</p><Link href="/shop">Shop all gaming gear →</Link></div>
-            </div>
-          </details>
-          <Link href="/">Home</Link>
-          <Link href="/shop?category=consoles">Consoles</Link>
-          <Link href="/shop?category=games">Games</Link>
-          <Link href="/shop?category=controllers">Controllers</Link>
-          <Link href="/shop?category=accessories">Accessories</Link>
-          <Link href="/shop?category=pc-gaming">PC Gaming</Link>
-          <Link href="/shop?category=used">Used</Link>
-          <Link className="deals-nav" href="/shop?sort=sale">Deals</Link>
+
+      <nav className="category-nav premium-nav" aria-label="Shop categories">
+        <div className="category-nav-inner premium-nav-inner">
+          <Link className="active-home" href="/">⌂ <span>Home</span></Link>
+          <Link href="/shop?category=consoles">▣ <span>Consoles</span></Link>
+          <Link href="/shop?category=games">◉ <span>Games</span></Link>
+          <Link href="/shop?category=controllers">✣ <span>Controllers</span></Link>
+          <Link href="/shop?category=accessories">◌ <span>Accessories</span></Link>
+          <Link href="/shop?category=pc-gaming">▱ <span>PC Gaming</span></Link>
+          <Link href="/shop?sort=sale">◇ <span>Deals</span></Link>
+          <Link className="special-offers" href="/shop?sort=sale">🔥 Special Offers</Link>
         </div>
       </nav>
     </>
