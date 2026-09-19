@@ -1,0 +1,7 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { formatPKR } from "@/lib/money";
+import { platformLabel } from "@/lib/gaming";
+import { useStore } from "./store-provider";
+export function CompareView(){const { compare, toggleCompare }=useStore(); if(!compare.length)return <div className="collection-page"><span className="eyebrow">Compare gear</span><h1>Product comparison</h1><div className="empty-state large">Add up to three products using the compare button on product cards.</div><Link href="/shop" className="primary-button inline">Browse products</Link></div>;return <div className="collection-page"><div className="page-title-row"><div><span className="eyebrow">Side by side</span><h1>Compare gaming gear</h1></div><Link href="/shop">Add more products →</Link></div><div className="compare-grid">{compare.map(p=>{const img=p.images?.find(Boolean);return <article className="compare-card" key={p.id}><button className="compare-remove" onClick={()=>toggleCompare(p)}>×</button><div className="compare-image">{img?<Image src={img} fill sizes="300px" alt={p.name}/>:<span>{platformLabel(p)}</span>}</div><Link href={`/products/${p.slug}`}><h2>{p.name}</h2></Link><strong className="compare-price">{formatPKR(p.price_pkr)}</strong><dl><div><dt>Platform</dt><dd>{platformLabel(p)}</dd></div><div><dt>Condition</dt><dd>{p.condition}</dd></div><div><dt>Stock</dt><dd>{p.stock_qty>0?`${p.stock_qty} available`:"Out of stock"}</dd></div><div><dt>Warranty</dt><dd>{p.warranty||"Ask store"}</dd></div></dl></article>})}</div></div>}
