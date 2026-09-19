@@ -363,3 +363,5 @@ body{
   .premium-trust-strip{grid-template-columns:1fr;margin:10px 12px 0}
   .premium-trust-strip>div{border-right:0}
 }
+
+/* Navy/cyan palette synced for production deployment. */
