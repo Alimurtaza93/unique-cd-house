@@ -6,7 +6,7 @@ import "./purple-theme.css";
 import { SiteHeader } from "@/components/site-header";
 import { StoreProvider } from "@/components/store-provider";
 
-export const viewport = { themeColor: "#6d28d9" };
+export const viewport = { themeColor: "#061b2f" };
 
 export const metadata: Metadata = {
   title: { default: "Unique CD House | Gaming Store Sialkot", template: "%s | Unique CD House" },
