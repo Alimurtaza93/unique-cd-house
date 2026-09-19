@@ -1,0 +1,1 @@
+export default function ReturnsPage(){return <main className="content-page"><span className="eyebrow">Customer care</span><h1>Returns & warranty</h1><p>This page is connected to the store policy system and can be replaced with the approved business policy before launch.</p></main>}
